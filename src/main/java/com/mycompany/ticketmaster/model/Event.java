@@ -1,6 +1,7 @@
 package com.mycompany.ticketmaster.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mycompany.ticketmaster.util.EventIdGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Event {
     private String location;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Ticket> tickets;
 
     @PrePersist

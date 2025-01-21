@@ -1,5 +1,7 @@
 package com.mycompany.ticketmaster.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,11 +14,13 @@ public class Ticket {
     private Long ticketNumber;
     private TicketState state = TicketState.AVAILABLE;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id" )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id")
+    @JsonBackReference
     private Event event;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private User user;
 }
