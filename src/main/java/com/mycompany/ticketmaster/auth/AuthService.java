@@ -2,6 +2,7 @@ package com.mycompany.ticketmaster.auth;
 
 import com.mycompany.ticketmaster.model.User;
 import com.mycompany.ticketmaster.repository.UserRepository;
+import com.mycompany.ticketmaster.security.JwtService;
 import com.mycompany.ticketmaster.token.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -40,10 +41,11 @@ public class AuthService {
                 .build();
 
         User savedUser = userRepository.saveAndFlush(user);
-        var jwtToken = jwtService.generateToken(user);
-        saveUserToken(savedUser, jwtToken);
+//        var jwtToken = jwtService.generateToken(user);
+//        saveUserToken(savedUser, jwtToken);
 
-        return AuthResponse.builder().accessToken(jwtToken).role(request.getRole()).build();
+//        return AuthResponse.builder().accessToken(jwtToken).role(request.getRole()).build();
+        return null;
     }
 
     public AuthResponse authenticate(AuthRequest request) {
