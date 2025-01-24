@@ -20,7 +20,7 @@ public class TicketController {
         return ticketService.getAvailableTickets(eventId);
     }
 
-    @PostMapping("")
+    @PostMapping("/book")
     public void bookTicket(@RequestBody TicketRequest ticketRequest) {
         ticketService.bookTicket(ticketRequest.getEventId(), ticketRequest.getUserId(), ticketRequest.getTicketNumber());
     }
