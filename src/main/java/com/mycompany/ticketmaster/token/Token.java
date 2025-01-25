@@ -1,21 +1,25 @@
 package com.mycompany.ticketmaster.token;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Token {
     @Id
     @GeneratedValue
-    private Integer id;
+    public Integer id;
     @Column(unique = true)
-    private String token;
+    public String token;
     @Enumerated(EnumType.STRING)
     public TokenType tokenType = TokenType.BEARER;
-    private boolean revoked;
-    private boolean expired;
-    private Long userId;
+    public boolean revoked;
+    public boolean expired;
+    public Long userId;
 }

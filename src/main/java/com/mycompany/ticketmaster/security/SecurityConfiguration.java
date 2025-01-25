@@ -28,7 +28,6 @@ public class SecurityConfiguration {
                         req.requestMatchers(WHITE_LIST_URLS).permitAll()
                                 .requestMatchers("/auth/*").permitAll()
                                 .requestMatchers("/events/add").hasAuthority("admin")
-                                .anyRequest().hasAnyAuthority("user", "admin")
                                 .anyRequest().authenticated()
                 ).exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

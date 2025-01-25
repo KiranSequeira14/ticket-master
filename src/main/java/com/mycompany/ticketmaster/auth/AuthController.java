@@ -17,7 +17,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> signUp(@RequestBody RegisterRequest request) throws AccountException {
-        if (!request.getRole().equals("user") && request.getRole().equals("admin")) {
+        if (!request.getRole().equals("user") && !request.getRole().equals("admin")) {
             throw new AccountException("Please provide a proper role");
         }
         return ResponseEntity.ok(authService.registerUser(request));
