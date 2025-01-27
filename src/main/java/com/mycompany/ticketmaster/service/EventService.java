@@ -7,6 +7,7 @@ import com.mycompany.ticketmaster.repository.EventRepository;
 import com.mycompany.ticketmaster.repository.TicketRepository;
 import com.mycompany.ticketmaster.util.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    @Cacheable(value = "events", key = "#eventId")
     public Event getByEventId(String eventId) {
         return eventRepository.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event Not found!"));
     }
